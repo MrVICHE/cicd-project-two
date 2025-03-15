@@ -29,14 +29,14 @@ jobs:
           working-directory: ./node-api
 
       steps:
-        - name: Checkout code
+        - name: Checkout
+          uses: actions/checkout@v4
+
+        - name: Checkout
           uses: actions/checkout@v4
 
         - name: Install Node JS
-          uses: actions@setup-node@v3
-
-        - name: Install dependencies
-          run: npm ci --prefer-offline
+          uses: actions/setup-node@v3
 
         - name: Run lint
           run: npm run lint
