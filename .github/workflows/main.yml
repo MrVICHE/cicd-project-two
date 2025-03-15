@@ -2,7 +2,7 @@ name: Github Actions CI
 on: [push]
 
 jobs:
-    build-frontend:
+    build-images:
         runs-on: ubuntu-latest
         permissions:
             packages: write
@@ -12,7 +12,7 @@ jobs:
                 - context_name: ./frontend
                   tag_name: ghcr.io/mrviche/cicd-project-two/frontend
                 - context_name: ./node-api
-                  tag_name: hrcr.io/mrviche/cicd-project-two/node-api
+                  tag_name: ghcr.io/mrviche/cicd-project-two/node-api
             
         steps: 
             - name: Checkout
