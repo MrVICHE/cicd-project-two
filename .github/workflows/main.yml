@@ -6,7 +6,14 @@ jobs:
         runs-on: ubuntu-latest
         permissions:
             packages: write
-        
+        strategy:
+          matrix:
+            include:
+                - context_name: ./frontend
+                  tag_name: ghcr.io/mrviche/cicd-project-two/frontend
+                - context_name: ./node-api
+                  tag_name: hrcr.io/mrviche/cicd-project-two/node-api
+            
         steps: 
             - name: Checkout
               uses: actions/checkout@v4
@@ -27,9 +34,9 @@ jobs:
             - name: Build and push
               uses: docker/build-push-action@v6
               with:
-                context: ./frontend
+                context: ${{ matrix.context_name }}
                 push: true
-                tags: ghcr.io/mrviche/cicd-project-two/frontend:latest
+                tags: ${{ matrix.tag_name }}:latest
                 cache-from: type=gha
                 cache-to: type=gha, mode=max
 
