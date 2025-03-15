@@ -30,13 +30,13 @@ jobs:
 
       steps:
         - name: Checkout code
-          run: actions/checkout@v4
+          uses: actions/checkout@v4
 
         - name: Install Node JS
           uses: actions@setup-node@v3
 
         - name: Install dependencies
-          uses: npm ci --prefer-offline
+          run: npm ci --prefer-offline
 
         - name: Run lint
           run: npm run lint
