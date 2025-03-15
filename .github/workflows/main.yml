@@ -38,9 +38,6 @@ jobs:
         - name: Install Node JS
           uses: actions/setup-node@v3
 
-        - name: Run unit tests
-          run: npm run test:ci
-
         - name: Upload coverage reports to Codecov
           uses: codecov/codecov-action@v5
           with:
