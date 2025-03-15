@@ -33,3 +33,5 @@ jobs:
                 tags: ghcr.io/mrviche/cicd-project-two/frontend:latest
                 cache-from: type=gha
                 cache-to: type=gha, mode=max
+            
+            - run: docker --debug
