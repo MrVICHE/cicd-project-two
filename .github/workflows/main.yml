@@ -10,9 +10,9 @@ jobs:
           matrix:
             include:
                 - context_name: ./frontend
-                  tag_name: ghcr.io/mrviche/cicd-project-two/frontend
+                  tag_name: ghcr.io/mrviche/cicd-project-two/frontend:latest
                 - context_name: ./node-api
-                  tag_name: ghcr.io/mrviche/cicd-project-two/node-api
+                  tag_name: ghcr.io/mrviche/cicd-project-two/node-api:latest
             
         steps: 
             - name: Checkout
@@ -25,6 +25,12 @@ jobs:
                 username: ${{ github.actor }}
                 password: ${{ secrets.GHCR_PAT }}
 
+            - name: Docker meta
+              id: meta
+              uses: docker/metadata-action@v5
+              with:
+                images: ${{ matrix.tag_name}}
+
             - name: Set up QEMU
               uses: docker/setup-qemu-action@v3
 
@@ -36,7 +42,7 @@ jobs:
               with:
                 context: ${{ matrix.context_name }}
                 push: true
-                tags: ${{ matrix.tag_name }}:latest
+                tags: ${{ matrix.tag_name }}
                 cache-from: type=gha
                 cache-to: type=gha, mode=max
 
