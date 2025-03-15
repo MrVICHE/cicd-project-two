@@ -29,8 +29,8 @@ jobs:
               with:
                 context: ./frontend
                 push: true
-                tags: ghcr.io/MrVICHE/cicd-project-two/frontend:latest
+                tags: ghcr.io/mrviche/cicd-project-two/frontend:latest
                 cache-from: type=gha
                 cache-to: type=gha, mode=max
-            
-            - run: docker --debug
+
+                
