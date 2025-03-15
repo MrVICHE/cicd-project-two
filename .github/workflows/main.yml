@@ -2,6 +2,61 @@ name: Github Actions CI
 on: [push]
 
 jobs:
+
+    check-frontend:
+      runs-on: ubuntu-latest
+      defaults:
+        run:
+          working-directory: ./frontend
+
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+
+        - name: Install Node JS
+          uses: actions/setup-node@v3
+
+        - name: Intall dependencies
+          run: npm cd --prefer-offline
+
+        - name: Check lint
+          run: npm run lint
+
+        - name: Audit dependencies
+          run: npm audit --audit-level=moderate
+
+    
+    check-node-api:
+      runs-on: ubuntu-latest
+      defaults:
+        run:
+          working-directory: ./node-api
+
+      steps:
+        - name: Checkout code
+          run: actions/checkout@v4
+
+        - name: Install Node JS
+          run: actions@setup-node@v3
+
+        - name: Install dependencies
+          run: npm ci --prefer-offline
+
+        - name: Run lint
+          run: npm run lint
+
+        - name: Audit dependencies
+          run: npm audit --audit-level=moderate
+
+        - name: Run unit tests
+          run: npm run test:ci
+
+        - name: Upload coverage reports to Codecov
+          uses: codecov/codecov-action@v5
+          with:
+            token: ${{ secrets.CODECOV_TOKEN }}
+
+
     build-images:
         runs-on: ubuntu-latest
         permissions:
