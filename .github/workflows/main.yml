@@ -30,10 +30,10 @@ jobs:
 
       steps:
         - name: Checkout code
-          uses: actions/checkout@v4
+          run: actions/checkout@v4
 
         - name: Install Node JS
-          uses: actions@setup-node@v3
+          run: actions@setup-node@v3
 
         - name: Install dependencies
           run: npm ci --prefer-offline
@@ -93,6 +93,4 @@ jobs:
                 tags: ${{ matrix.tag_name }}
                 cache-from: type=gha
                 cache-to: type=gha, mode=max
-
-                
 
