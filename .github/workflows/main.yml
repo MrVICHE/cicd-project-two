@@ -16,7 +16,7 @@ jobs:
               with:
                 registry: ghcr.io
                 username: ${{ github.actor }}
-                password: ${{ secrets.GITHUB_TOKEN }}
+                password: ${{ secrets.GHCR_PAT }}
 
             - name: Set up QEMU
               uses: docker/setup-qemu-action@v3
@@ -33,4 +33,3 @@ jobs:
                 cache-from: type=gha
                 cache-to: type=gha, mode=max
 
-                
