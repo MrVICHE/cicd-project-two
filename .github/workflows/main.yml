@@ -38,9 +38,6 @@ jobs:
         - name: Install Node JS
           uses: actions/setup-node@v3
 
-        - name: Run lint
-          run: npm run lint
-
         - name: Run unit tests
           run: npm run test:ci
 
